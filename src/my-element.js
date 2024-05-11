@@ -1,6 +1,4 @@
 import { LitElement, css, html } from 'lit'
-import litLogo from './assets/lit.svg'
-import viteLogo from '/vite.svg'
 
 /**
  * An example element.
@@ -8,24 +6,10 @@ import viteLogo from '/vite.svg'
  * @slot - This element has a slot
  * @csspart button - The button
  */
-export class Cardnewmusic extends LitElement {
-  static get properties() {
-    return {
-      /**
-       * Copy for the read the docs hint.
-       */
-      cards: { type: Array },
-
-      /**
-       * The number of times the button has been clicked.
-       */
-      count: { type: Number },
-    }
-  }
+class Cardnewmusic extends LitElement {
 
   constructor() {
     super()
-    this.cards = []
   }
 
   static styles = css`
@@ -85,19 +69,19 @@ export class Cardnewmusic extends LitElement {
 
   `
 
-  render() {
+  render(){
     return html`
-      <div class="container__cards">
-        <div class="container__card__new__music">
-          <div class="new__music__img">
-            <img src="/assets/humble.jpeg" alt="">
-          </div>
-          <div class="new__music__info">
-            <h4>Humble</h4>
-            <p>Kendrick Lamar, <span>2017</span></p>
-          </div>
+    <div class="container__cards">
+      <div class="container__card__new__music">
+        <div class="new__music__img">
+          <img src="./src/assets/humble.jpeg" alt="">
+        </div>
+        <div class="new__music__info">
+          <h4>Humble</h4>
+          <p>Kendrick Lamar, <span>2017</span></p>
         </div>
       </div>
+    </div>
     `
   }
 }
