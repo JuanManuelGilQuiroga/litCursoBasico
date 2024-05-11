@@ -8,13 +8,13 @@ import viteLogo from '/vite.svg'
  * @slot - This element has a slot
  * @csspart button - The button
  */
-export class MyElement extends LitElement {
+export class Cardnewmusic extends LitElement {
   static get properties() {
     return {
       /**
        * Copy for the read the docs hint.
        */
-      docsHint: { type: String },
+      cards: { type: Array },
 
       /**
        * The number of times the button has been clicked.
@@ -25,107 +25,81 @@ export class MyElement extends LitElement {
 
   constructor() {
     super()
-    this.docsHint = 'Click on the Vite and Lit logos to learn more'
-    this.count = 0
+    this.cards = []
   }
+
+  static styles = css`
+      :root{
+        --grey-1: #333333;
+        --grey-2: #4F4F4F;
+        --grey-3: #828282
+      }
+      *{
+        /*border: .2px solid black;*/
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .container__cards{
+        border: 1px solid black;
+        width: 20vw;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+      }
+      .container__card__new__music{
+      
+        width: 45%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .new__music__img{
+        width: 95%;
+        display: flex;
+        border-radius: 5%;
+        overflow: hidden;
+      }
+      .new__music__img img{
+        object-fit: contain;
+        width: 100%;
+        border: none;
+      }
+      .new__music__info{
+        display: flex;
+        flex-direction: column;
+        padding: 3% 5%;
+      }
+      .new__music__info h4{
+        color: var(--grey-1);
+        font-size: 1.3vw;
+      }
+      .new__music__info p{
+        color: var(--grey-2);
+        font-size: 1vw;
+      }
+      .new__music__info span{
+        color: var(--grey-3);
+      }
+
+  `
 
   render() {
     return html`
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src=${viteLogo} class="logo" alt="Vite logo" />
-        </a>
-        <a href="https://lit.dev" target="_blank">
-          <img src=${litLogo} class="logo lit" alt="Lit logo" />
-        </a>
+      <div class="container__cards">
+        <div class="container__card__new__music">
+          <div class="new__music__img">
+            <img src="/assets/humble.jpeg" alt="">
+          </div>
+          <div class="new__music__info">
+            <h4>Humble</h4>
+            <p>Kendrick Lamar, <span>2017</span></p>
+          </div>
+        </div>
       </div>
-      <slot></slot>
-      <div class="card">
-        <button @click=${this._onClick} part="button">
-          count is ${this.count}
-        </button>
-      </div>
-      <p class="read-the-docs">${this.docsHint}</p>
-    `
-  }
-
-  _onClick() {
-    this.count++
-  }
-
-  static get styles() {
-    return css`
-      :host {
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 2rem;
-        text-align: center;
-      }
-
-      .logo {
-        height: 6em;
-        padding: 1.5em;
-        will-change: filter;
-        transition: filter 300ms;
-      }
-      .logo:hover {
-        filter: drop-shadow(0 0 2em #646cffaa);
-      }
-      .logo.lit:hover {
-        filter: drop-shadow(0 0 2em #325cffaa);
-      }
-
-      .card {
-        padding: 2em;
-      }
-
-      .read-the-docs {
-        color: #888;
-      }
-
-      a {
-        font-weight: 500;
-        color: #646cff;
-        text-decoration: inherit;
-      }
-      a:hover {
-        color: #535bf2;
-      }
-
-      ::slotted(h1) {
-        font-size: 3.2em;
-        line-height: 1.1;
-      }
-
-      button {
-        border-radius: 8px;
-        border: 1px solid transparent;
-        padding: 0.6em 1.2em;
-        font-size: 1em;
-        font-weight: 500;
-        font-family: inherit;
-        background-color: #1a1a1a;
-        cursor: pointer;
-        transition: border-color 0.25s;
-      }
-      button:hover {
-        border-color: #646cff;
-      }
-      button:focus,
-      button:focus-visible {
-        outline: 4px auto -webkit-focus-ring-color;
-      }
-
-      @media (prefers-color-scheme: light) {
-        a:hover {
-          color: #747bff;
-        }
-        button {
-          background-color: #f9f9f9;
-        }
-      }
     `
   }
 }
 
-window.customElements.define('my-element', MyElement)
+customElements.define('card-new-music', Cardnewmusic)
