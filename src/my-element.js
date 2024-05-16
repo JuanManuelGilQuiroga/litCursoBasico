@@ -71,14 +71,14 @@ class Cardnewmusic extends LitElement {
 
   render(){
     return html`
-    <div class="container__cards">
+    <div id="container__cards" class="container__cards">
       <div class="container__card__new__music">
         <div class="new__music__img">
-          <img src="./src/assets/humble.jpeg" alt="">
+          <img src=${url} alt="">
         </div>
         <div class="new__music__info">
-          <h4 @click="${this.getInfoCard}">Humble</h4>
-          <p>Kendrick Lamar, <span>2017</span></p>
+          <h4 @click="${this.getInfoCard}">${albumName}</h4>
+          <p>${artistName}, <span>${year}</span></p>
         </div>
       </div>
     </div>
@@ -96,6 +96,8 @@ class Cardnewmusic extends LitElement {
         'X-RapidAPI-Host': 'spotify23.p.rapidapi.com'
       }
     }
+    let container__cards = document.querySelector("#container__cards")
+    //container__cards.innerHTML = "";
     for (let val of data){
       let res = await fetch(`https://spotify23.p.rapidapi.com/albums/?ids=${val}`, options)
       let album = await res.json()
@@ -105,7 +107,18 @@ class Cardnewmusic extends LitElement {
       let {albums:[{release_date}]} = album
       let fecha = new Date(release_date);
       let year = fecha.getFullYear()
-      
+      let content = html`
+        <div class="container__card__new__music">
+          <div class="new__music__img">
+            <img src=${url} alt="">
+          </div>
+          <div class="new__music__info">
+            <h4 @click="${this.getInfoCard}">${albumName}</h4>
+            <p>${artistName}, <span>${year}</span></p>
+          </div>
+        </div>
+      `;
+      container__cards.appendChild(content)
       console.log(artistName, albumName, url, year)
       // album = albums
       // console.log(nombredelacacion)
