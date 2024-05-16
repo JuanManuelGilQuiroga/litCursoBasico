@@ -99,10 +99,14 @@ class Cardnewmusic extends LitElement {
     for (let val of data){
       let res = await fetch(`https://spotify23.p.rapidapi.com/albums/?ids=${val}`, options)
       let album = await res.json()
-      console.log(album)
-      //const name = {albums:[{name}]}
-      let {albums:[{name}]} = album
-      album = name
+      let {albums:[{name: albumName}]} = album
+      let {albums:[{artists:[{name: artistName}]}]} = album
+      let {albums:[{images:[{url}]}]} = album
+      let {albums:[{release_date}]} = album
+      let fecha = new Date(release_date);
+      let year = fecha.getFullYear()
+      
+      console.log(artistName, albumName, url, year)
       // album = albums
       // console.log(nombredelacacion)
     }
