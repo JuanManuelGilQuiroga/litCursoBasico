@@ -1,5 +1,9 @@
 import { LitElement, html, css } from "lit";
 import { myTrack } from "./my-track-list"
+import { MyLeftBar } from "./my-left-bar";
+import trackList1 from "/Group 45.png"
+import trackList2 from "/Group 44.png"
+
 
 class myGrid extends LitElement {
 
@@ -14,7 +18,7 @@ class myGrid extends LitElement {
     }
 
     .main__aside{
-        background: #2B2D42;
+        background: #FAFAFA;
         padding: 10px;
         display: grid;
         grid-template-rows: 130px 1fr 130px
@@ -66,19 +70,26 @@ class myGrid extends LitElement {
         return html`
         <main class="main">
             <aside class="main__aside">
-                <article class="aside__profile"></article>
-                <article class="aside__buttons">
-                </article>
-                <article class="aside__exit"></article>
+                <my-left-bar></my-left-bar>
             </aside>
             <section class="main__section1"></section>
             <section class="main__section2"></section>
             <section class="main__section3">
+                <h1>Track list</h1>
+                <div>
+                    <a href="#">
+                        <img src=${trackList1}>
+                    </a>
+                    <a href="#">
+                        <img src=${trackList2}>
+                    </a>
+                </div>
                 <my-track></my-track>
             </section>
         </main>
         `
     }
 }
+customElements.define('my-left-bar', MyLeftBar);
 customElements.define('my-track', myTrack);
 customElements.define("my-grid" , myGrid)
