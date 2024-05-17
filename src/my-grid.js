@@ -1,4 +1,5 @@
 import { LitElement, html, css } from "lit";
+import { Cardnewmusic } from "./my-element"
 import { myTrack } from "./my-track-list"
 import { MyLeftBar } from "./my-left-bar";
 import trackList1 from "/Group 45.png"
@@ -72,7 +73,9 @@ class myGrid extends LitElement {
             <aside class="main__aside">
                 <my-left-bar></my-left-bar>
             </aside>
-            <section class="main__section1"></section>
+            <section class="main__section1">
+                <card-new-music></card-new-music>
+            </section>
             <section class="main__section2"></section>
             <section class="main__section3">
                 <h1>Track list</h1>
@@ -84,12 +87,12 @@ class myGrid extends LitElement {
                         <img src=${trackList2}>
                     </a>
                 </div>
-                <my-track></my-track>
             </section>
         </main>
         `
     }
 }
+customElements.define('card-new-music', Cardnewmusic)
 customElements.define('my-left-bar', MyLeftBar);
 customElements.define('my-track', myTrack);
 customElements.define("my-grid" , myGrid)

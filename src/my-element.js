@@ -6,10 +6,11 @@ import { LitElement, css, html } from 'lit'
  * @slot - This element has a slot
  * @csspart button - The button
  */
-class Cardnewmusic extends LitElement {
+export class Cardnewmusic extends LitElement {
 
   constructor() {
     super()
+    this.dataAlbumes = ["18NOKLkZETa4sWwLMIm0UZ", "444LqH6QlvR62nY8Vxn37u", "5r36AJ6VOJtp00oxSkBZ5h", "4jox3ip1I39DFC2B7R5qLH"]
   }
 
   static styles = css`
@@ -68,27 +69,7 @@ class Cardnewmusic extends LitElement {
       }
 
   `
-
-  render(){
-    return html`
-    <div id="container__cards" class="container__cards">
-      <div class="container__card__new__music">
-        <div class="new__music__img">
-          <img src=${url} alt="">
-        </div>
-        <div class="new__music__info">
-          <h4 @click="${this.getInfoCard}">${albumName}</h4>
-          <p>${artistName}, <span>${year}</span></p>
-        </div>
-      </div>
-    </div>
-    `
-  }
-
-
-  
-  async getInfoCard(){
-    let data = ["18NOKLkZETa4sWwLMIm0UZ", "444LqH6QlvR62nY8Vxn37u", "5r36AJ6VOJtp00oxSkBZ5h", "4jox3ip1I39DFC2B7R5qLH"]
+  async getInfoCard(val){
     const options = {
       method: 'GET',
       headers: {
@@ -96,34 +77,37 @@ class Cardnewmusic extends LitElement {
         'X-RapidAPI-Host': 'spotify23.p.rapidapi.com'
       }
     }
-    let container__cards = document.querySelector("#container__cards")
+    //let container__cards = document.querySelector("#container__cards")
     //container__cards.innerHTML = "";
-    for (let val of data){
-      let res = await fetch(`https://spotify23.p.rapidapi.com/albums/?ids=${val}`, options)
-      let album = await res.json()
-      let {albums:[{name: albumName}]} = album
-      let {albums:[{artists:[{name: artistName}]}]} = album
-      let {albums:[{images:[{url}]}]} = album
-      let {albums:[{release_date}]} = album
-      let fecha = new Date(release_date);
-      let year = fecha.getFullYear()
-      let content = html`
-        <div class="container__card__new__music">
-          <div class="new__music__img">
-            <img src=${url} alt="">
-          </div>
-          <div class="new__music__info">
-            <h4 @click="${this.getInfoCard}">${albumName}</h4>
-            <p>${artistName}, <span>${year}</span></p>
-          </div>
+    
+    let res = await fetch(`https://spotify23.p.rapidapi.com/albums/?ids=${val}`, options)
+    let album = await res.json()
+    let {albums:[{name: albumName}]} = album
+    let {albums:[{artists:[{name: artistName}]}]} = album
+    let {albums:[{images:[{url}]}]} = album
+    let {albums:[{release_date}]} = album
+    let fecha = new Date(release_date);
+    let year = fecha.getFullYear()
+    let content = html`
+      <div class="container__card__new__music">
+        <div class="new__music__img">
+          <img src=${url} alt="">
         </div>
-      `;
-      container__cards.appendChild(content)
-      console.log(artistName, albumName, url, year)
-      // album = albums
-      // console.log(nombredelacacion)
-    }
+        <div class="new__music__info">
+          <h4>${albumName}</h4>
+          <p>${artistName}, <span>${year}</span></p>
+        </div>
+      </div>
+    `;
+    console.log(content)
+    return content
+  }
+
+  render(){
+    return html`
+    <div id="container__cards" class="container__cards">
+      ${Promise.all(this.dataAlbumes.map(async (val) => await getInfoCard(val)))}
+    </div>
+    `
   }
 }
-
-customElements.define('card-new-music', Cardnewmusic)
