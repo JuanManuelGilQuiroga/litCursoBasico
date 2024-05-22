@@ -27,7 +27,6 @@ export class Cardnewmusic extends LitElement {
         box-sizing: border-box;
       }
       .container__cards{
-        border: 1px solid black;
         width: 315px;
         height: 345px;
         display: flex;
@@ -46,6 +45,7 @@ export class Cardnewmusic extends LitElement {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
         overflow: hidden
       }
       .new__music__img{

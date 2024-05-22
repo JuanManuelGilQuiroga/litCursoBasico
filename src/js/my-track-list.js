@@ -34,41 +34,30 @@ export class myTrack extends LitElement{
 
     render() {
         return html`
-        <div class="padre">
-            <h3>Playing next</h3>
-            ${Array.isArray(this.songs) && this.songs.length > 0 ? 
-            this.songs.map(song => html`
-            <div class="card">
-                <div class="cards">
-                    <div class="cards_info">
-                        <div class="aling"><button  type="button"> <box-icon name='menu'></box-icon></button></div>
-                        <div class="img"><img src="${song.releases.items[0].coverArt.sources[0].url}"></div>
-                        <div class="Titule_and_artis">
-                            <h3>${song.releases.items[0].name}</h3>
-                        </div>
-                        </div>
-                        <div class="minutes_and_date">
-                        <h5>${song.releases.items[0].date.year}</h5>
+        ${Array.isArray(this.songs) && this.songs.length > 0 ? 
+        this.songs.map(song => html`
+        <div class="card">
+            <div class="cards">
+                <div class="cards_info">
+                    <div class="aling"><button  type="button"> <box-icon name='menu'></box-icon></button></div>
+                    <div class="img"><img src="${song.releases.items[0].coverArt.sources[0].url}"></div>
+                    <div class="Titule_and_artis">
+                        <h3>${song.releases.items[0].name}</h3>
                     </div>
+                    </div>
+                    <div class="minutes_and_date">
+                    <h5>${song.releases.items[0].date.year}</h5>
                 </div>
-            </div>  `)
+            </div>
+        </div>  `)
 
         : 
         html`<p>No hay canciones disponibles</p>`
         }
-        </div>
     `;
     }
 
     static styles = css`
-        .padre{
-            height: 90vh;
-            overflow-y: scroll;
-            bottom: 0
-        }
-        .padre > h3{
-            padding:0 3%;
-        }
         .card {
             margin: 10px;
             padding: 0;

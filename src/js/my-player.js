@@ -36,8 +36,7 @@ export class MyPlayer extends LitElement{
     
     display: grid;
     width:100% !important;
-    height:100vh;
-    background: white;
+    height:100vh;;
     grid-template-columns: 1fr;
     grid-template-rows: 0.3fr 3fr 0.5fr 0.5fr 0.5fr 0.5fr 0.3fr;   
     grid-template-areas: 
