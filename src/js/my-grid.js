@@ -87,12 +87,13 @@ class myGrid extends LitElement {
                         <img src=${trackList2}>
                     </a>
                 </div>
+                <my-track></my-track>
             </section>
         </main>
         `
     }
 }
-customElements.define('card-new-music', Cardnewmusic)
+
 customElements.define('my-left-bar', MyLeftBar);
 customElements.define('my-track', myTrack);
 customElements.define("my-grid" , myGrid)
