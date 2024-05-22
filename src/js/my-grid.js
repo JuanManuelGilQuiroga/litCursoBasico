@@ -4,7 +4,7 @@ import { myTrack } from "./my-track-list"
 import { MyLeftBar } from "./my-left-bar";
 import trackList1 from "/Group 45.png"
 import trackList2 from "/Group 44.png"
-
+import { MyPlayer } from "./my-player";
 
 class myGrid extends LitElement {
 
@@ -76,7 +76,9 @@ class myGrid extends LitElement {
             <section class="main__section1">
                 <card-new-music></card-new-music>
             </section>
-            <section class="main__section2"></section>
+            <section class="main__section2">
+                <my-player></my-player>
+            </section>
             <section class="main__section3">
                 <h1>Track list</h1>
                 <div>
